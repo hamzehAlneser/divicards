@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SubCatCell" id="gTV-IL-0wX" customClass="SubCategoryCell" customModule="divicards" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="253" height="162"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="253" height="162"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hKC-o5-D6L">
+                        <rect key="frame" x="0.0" y="0.0" width="253" height="162"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="d6L-Al-BTS">
+                                <rect key="frame" x="0.0" y="0.0" width="253" height="162"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fBE-fh-igC">
+                                <rect key="frame" x="20" y="107" width="213" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="e0I-bU-YRV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                <color key="textColor" name="playstationBackColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="fBE-fh-igC" secondAttribute="bottom" constant="15" id="7vD-L4-6t3"/>
+                            <constraint firstItem="d6L-Al-BTS" firstAttribute="top" secondItem="hKC-o5-D6L" secondAttribute="top" id="DU9-LY-k9m"/>
+                            <constraint firstItem="fBE-fh-igC" firstAttribute="leading" secondItem="hKC-o5-D6L" secondAttribute="leading" constant="20" id="TtM-Jf-ywY"/>
+                            <constraint firstAttribute="trailing" secondItem="fBE-fh-igC" secondAttribute="trailing" constant="20" id="isk-zk-slQ"/>
+                            <constraint firstAttribute="bottom" secondItem="d6L-Al-BTS" secondAttribute="bottom" id="oHx-Ww-GJs"/>
+                            <constraint firstItem="d6L-Al-BTS" firstAttribute="leading" secondItem="hKC-o5-D6L" secondAttribute="leading" id="owk-1F-tWA"/>
+                            <constraint firstAttribute="trailing" secondItem="d6L-Al-BTS" secondAttribute="trailing" id="vge-Ws-F76"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="hKC-o5-D6L" secondAttribute="bottom" id="DHP-OP-85a"/>
+                <constraint firstItem="hKC-o5-D6L" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Hsv-21-Szn"/>
+                <constraint firstItem="hKC-o5-D6L" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Jap-uh-8ub"/>
+                <constraint firstAttribute="trailing" secondItem="hKC-o5-D6L" secondAttribute="trailing" id="cqy-SW-0Pu"/>
+            </constraints>
+            <size key="customSize" width="253" height="162"/>
+            <connections>
+                <outlet property="FirstImage" destination="d6L-Al-BTS" id="cA7-BZ-NNw"/>
+                <outlet property="catLabel" destination="fBE-fh-igC" id="NoA-hc-6MK"/>
+                <outlet property="mainView" destination="hKC-o5-D6L" id="Kz8-HQ-sKE"/>
+            </connections>
+            <point key="canvasLocation" x="123.91304347826087" y="109.15178571428571"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <namedColor name="playstationBackColor">
+            <color red="0.039000000804662704" green="0.41999998688697815" blue="0.68599998950958252" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
