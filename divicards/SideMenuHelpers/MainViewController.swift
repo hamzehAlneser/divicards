@@ -10,7 +10,9 @@ protocol MainMenuDelegate  {
     func DidNavigateToCategories(parentId : String)
 }
 class MainViewController: UIViewController, SideMenuViewControllerDelegate, HomeControllerDelegate {
+    var parentID : String = ""
     func didSelectCategory(subCategories: [CategoryData], paretId: String) {
+        self.parentID = paretId
         showSubViewController(parentId : paretId,data: subCategories)
     }
     
@@ -234,7 +236,7 @@ extension MainViewController {
             vc.didMove(toParent: self)}
 
     }
-    
+
     
     func showSubViewController(parentId : String, data : [CategoryData]) -> () {
         // Remove the previous View
@@ -246,8 +248,10 @@ extension MainViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "SubCatNav") as! SubCategoriesViewController
 
-        vc.fillCollectionView(selectedSubCategories: data)
-        vc.selectedCatParentId = parentId
+            vc.fillCollectionView(selectedSubCategories: data)
+            vc.selectedCatParentId = parentId
+        
+
 
         vc.view.tag = 99
         view.insertSubview(vc.view, at: self.revealSideMenuOnTop ? 0 : 1)
@@ -261,6 +265,9 @@ extension MainViewController {
             }
         }
         vc.didMove(toParent: self)
+        
+
+
     }
 
     func sideMenuState(expanded: Bool) {

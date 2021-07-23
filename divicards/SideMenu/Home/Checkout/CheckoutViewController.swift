@@ -29,15 +29,22 @@ class CheckoutViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         priceTextField.layer.cornerRadius = 15
-        
+        selectedProduct?.products_quantity = "0"
+        self.selectedProduct?.products_quantity = "2"
         let backImage = UIImage(systemName: "arrow.backward")!.withRenderingMode(.alwaysOriginal)
         UINavigationBar.appearance().backIndicatorImage = backImage
         UINavigationBar.appearance().backIndicatorTransitionMaskImage = backImage
         UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffset(horizontal: 0, vertical: -80.0), for: .default)
+        
         fillProductInfo(product: selectedProduct!)
     }
     @IBAction func buttonPressed(_ sender: Any) {
-        performSegue(withIdentifier: "checkoutToCredit", sender: self)
+        if (selectedProduct!.products_quantity != "0") {
+            performSegue(withIdentifier: "checkoutToCredit", sender: self)
+        }
+        else {
+            self.view.makeToast("Product out of stock")
+        }
     }
     
     @IBAction func backNavItemPressed(_ sender: Any) {
@@ -49,8 +56,10 @@ class CheckoutViewController: BaseViewController {
         productImage.load(url: url)
         if Int(product.products_quantity)! > 0 {
             inStockLabe.text = "In Stock"
-            stockButton.titleLabel?.text = "Proceed"
-            stockButton.backgroundColor = UIColor.blue
+            inStockLabe.textColor = #colorLiteral(red: 0.20513919, green: 0.5954503417, blue: 0.8653187156, alpha: 1)
+            stockButton.setTitle("Proceed", for: .normal)
+            stockButton.backgroundColor = #colorLiteral(red: 0.20513919, green: 0.5954503417, blue: 0.8653187156, alpha: 1)
+            stockButton.layer.cornerRadius = 20
         }
         else{
             inStockLabe.text = "Out of Stock"

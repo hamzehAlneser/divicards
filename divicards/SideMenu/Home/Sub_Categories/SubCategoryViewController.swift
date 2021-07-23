@@ -18,21 +18,23 @@ class SubCategoriesViewController: BaseViewController, UICollectionViewDelegate,
     @IBOutlet weak var collectionView: UICollectionView!
     
 
+
     override func viewDidLoad() {
 
         super.viewDidLoad()
+
         collectionView.register(UINib(nibName: "SubCategoryCell", bundle: nil), forCellWithReuseIdentifier: "SubCatCell")
         collectionView.delegate = self
         collectionView.dataSource = self
-        self.collectionView.reloadData {}
-            
-        
+        self.collectionView.reloadData {self.stopAnimating()}
     }
     
     //MARK:- Extra functions Functions
     func fillCollectionView(selectedSubCategories : [CategoryData]) {
         self.subCategories = selectedSubCategories
+       
     }
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SubToProducts" {
             let destinationNavigationController = segue.destination as! UINavigationController

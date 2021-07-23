@@ -40,7 +40,7 @@ class CreditCardViewController: UIViewController {
 extension CreditCardViewController{
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "creditToFinalSegue" {
-            if let finalVc = segue.destination as? FinalPageViewController {
+            if let finalVc = segue.destination as? AddToOrders {
                 finalVc.product = self.product
             }
         }

@@ -6,7 +6,7 @@
 //
 
 import UIKit
-class FinalPageViewController: BaseViewController {
+class AddToOrders: BaseViewController {
     @IBOutlet weak var productView: UIView!
     @IBOutlet weak var dileveryView: UIView!
     @IBOutlet weak var totalView: UIView!
@@ -42,8 +42,12 @@ class FinalPageViewController: BaseViewController {
     func fillInfo(product : ProductData) {
         
         productLabel.text = product.products_name
-        productPriceLabel.text = String(round(product.products_price * 100)/100)
-        totalLabel.text = String(round(product.products_price * 100)/100 + 2)
+        productPriceLabel.text = String(round(Double(product.products_price) ?? 0 * 100)/100)
+        contactTextField.text = UserDefaults.standard.string(forKey: "UserPhone")
+        if UserDefaults.standard.string(forKey: "UserFirstName") != nil {
+            nameLabel.text = UserDefaults.standard.string(forKey: "UserFirstName")! + UserDefaults.standard.string(forKey: "UserLastName")!
+        }
+//        totalLabel.text = String(round(Double(product.products_price) ?? 0 * 100/100 + 2)
         
     }
     
@@ -74,4 +78,24 @@ class FinalPageViewController: BaseViewController {
     @IBAction func backButtonPressed(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
-}
+    @IBAction func OrderNowPressed(_ sender: Any) {
+        if nameLabel.text == "" {
+            self.view.makeToast("Enter Name")
+        }
+        else if contactTextField.text == "" {
+            self.view.makeToast("Enter Contact info")
+        }
+        else if areaTextField.text == "" {
+            self.view.makeToast("Enter Area")
+        }
+
+        else {
+            var productID = Int(self.product?.products_id ?? "0")
+            var addToOrdersRepository = AddToOrdersRepository()
+            addToOrdersRepository.AddToOrdersRequest(products_id: productID ?? 0, products_name: self.product?.products_name ?? "Unknown", price: self.product?.products_price ?? "Unknown", name: UserDefaults.standard.string(forKey: "UserFirstName") ?? "Unknown", phone: UserDefaults.standard.string(forKey: "UserPhone") ?? "Unknown") { response in
+                print(response?.message)
+            }
+            }
+        }
+    }
+

@@ -9,8 +9,6 @@ import UIKit
 class RegisterController: BaseViewController,CountryPickerDelegate {
     
     
-    @IBOutlet weak var firstNameTextField : UITextField!
-    @IBOutlet weak var lastNameTextField : UITextField!
     
     @IBOutlet weak var emailAddressTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -26,7 +24,7 @@ class RegisterController: BaseViewController,CountryPickerDelegate {
 
     var countryPickerVc : CountryPickerController? = nil
     var gender = "1"
-    var code = "001"
+    var code = "00962"
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
@@ -53,19 +51,22 @@ class RegisterController: BaseViewController,CountryPickerDelegate {
         managePickCountryView()
         
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "RegisterToOTP" {
+            let vc = segue.destination as! OTPViewController
+            vc.email = emailAddressTextField.text
+            vc.pass = passwordTextField.text
+            vc.phone = "\(code + phoneNumberTextField.text!)"
+        }
+    }
     @IBAction func loginPressed(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }
     
     @IBAction func loginButtonPressed(_ sender: Any) {
         let registerRepositry = RegisterRepositry()
-        if firstNameTextField.text == "" {
-            self.view.makeToast("Enter First Name")
-        }
-        else if lastNameTextField.text == "" {
-            self.view.makeToast("Enter Last Name")
-        }
-        else if emailAddressTextField.text == "" {
+        if emailAddressTextField.text == "" {
             self.view.makeToast("Enter email")
         }
         else if !isValidEmail(emailAddressTextField.text!){
@@ -85,26 +86,16 @@ class RegisterController: BaseViewController,CountryPickerDelegate {
         }
 
         else {
-            startLoadingWithUIBlocker()
-            registerRepositry.RegisterRequest(firstName: firstNameTextField.text!, lastname: lastNameTextField.text!, email: emailAddressTextField.text!, password: passwordTextField.text!, phoneNumber: "\(code + phoneNumberTextField.text!)", gender: self.gender) { response in
-                self.stopLoadingWithUIBlocker()
-                self.performSegue(withIdentifier: "RegisterToHomeSegue", sender: self)
+            performSegue(withIdentifier: "RegisterToOTP", sender: self)
+//            startLoadingWithUIBlocker()
+//            registerRepositry.RegisterRequest(firstName: firstNameTextField.text!, lastname: lastNameTextField.text!, email: emailAddressTextField.text!, password: passwordTextField.text!, phoneNumber: "\(code + phoneNumberTextField.text!)", gender: self.gender) { response in
+//                self.stopLoadingWithUIBlocker()
+//                self.performSegue(withIdentifier: "RegisterToHomeSegue", sender: self)
             }
-        }
+        
         
     }
-    
-    @IBAction func maleOrFemalePicked(_ sender: UISegmentedControl) {
-        if sender.selectedSegmentIndex == 0 {
-            self.gender = "1"
-            }
 
-            if sender.selectedSegmentIndex == 1 {
-                self.gender = "2"
-
-            }
-
-    }
     
     
     @IBAction func pickCountryPressed(_ sender: Any) {
@@ -137,8 +128,7 @@ class RegisterController: BaseViewController,CountryPickerDelegate {
     }
     
     func managetextFieldDesigns (helper : DesignHelper) {
-        helper.addLineBelowTextField(textField: firstNameTextField)
-        helper.addLineBelowTextField(textField: lastNameTextField)
+
         helper.addLineBelowTextField(textField: emailAddressTextField)
         helper.addLineBelowTextField(textField: passwordTextField)
         helper.addLineBelowTextField(textField: confirmPasswordTextField)
@@ -152,7 +142,7 @@ class RegisterController: BaseViewController,CountryPickerDelegate {
         self.countryPickView.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.3)
         self.countryPickView.backgroundColor = .white
         pickCountryButton.backgroundColor = .clear
-        pickCountryButton.setTitle(IsoCountries.flag(countryCode: "us")! + " US +1" + " ▼", for: .normal)
+        pickCountryButton.setTitle(IsoCountries.flag(countryCode: "JO")! + " JO +962" + " ▼", for: .normal)
     }
 
     

@@ -9,6 +9,8 @@ import UIKit
 import Toast_Swift
 class LoginViewController: BaseViewController {
     var serviceConstants = ServiceConstants()
+    let network: NetworkManager = NetworkManager.sharedInstance
+
     @IBOutlet weak var emailTextField: UITextField!
     
     
@@ -26,6 +28,12 @@ class LoginViewController: BaseViewController {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
+    override func viewDidAppear(_ animated: Bool) {
+        NetworkManager.isUnReachableViaWiFi() { _ in
+            self.navigationController?.setNavigationBarHidden(true, animated: true)
+            self.performSegue(withIdentifier: "HomeToNoWifi", sender: self)
+        }
+    }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -34,6 +42,8 @@ class LoginViewController: BaseViewController {
     
     
     override func viewDidLoad() {
+
+        
         let designHelper = DesignHelper()
         super.viewDidLoad()
 

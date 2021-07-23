@@ -16,7 +16,7 @@ struct ProductResponse : Decodable {
 struct ProductData : Decodable {
     var products_id : String
     var products_image : String
-    var products_price : Double
+    var products_price : String
     var products_name : String
     var products_quantity : String
     var currency : String

@@ -13,7 +13,10 @@ struct ServiceConstants {
     let categoriesUrl = "http://divicards2.sensitivetime.com//api/allcategories"
     let ProductsUrl = "http://divicards2.sensitivetime.com//api/getallproducts"
     let UpdateUserInfoUrl = "http://divicards2.sensitivetime.com//api/updatecustomerinfo"
-func getHeaders() -> HTTPHeaders{
+    let AddToOrdersUrl = "http://divicards2.sensitivetime.com//api/addtoorder"
+    let HistoryUrl = "http://divicards2.sensitivetime.com//api/getorders"
+
+    func getHeaders() -> HTTPHeaders{
     let headers : HTTPHeaders = [
         "consumer-key" : "6801303c908569e8466efaac4d0cce85",
         "consumer-secret" : "268e7de2afe718c957e77cadbf25ff86",

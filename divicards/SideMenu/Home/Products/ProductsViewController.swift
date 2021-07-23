@@ -36,8 +36,8 @@ class ProductsViewController: BaseViewController, UICollectionViewDelegate, UICo
         imageView.contentMode = .scaleAspectFit
             let image = UIImage(named: "main_logo")
             imageView.image = image
-        
-        productReporsitry.productsRequest(catId: selectedCatParentId ?? "0") { response in
+        startLoadingWithUIBlocker()
+        productReporsitry.productsRequest(catId: catId ?? "0") { response in
             if(self.catId == "0"){
                 self.view.makeToast("Error")
                 return  }
@@ -47,11 +47,8 @@ class ProductsViewController: BaseViewController, UICollectionViewDelegate, UICo
                 if (response?.product_data.count)! > 0 {
                     var list = response!.product_data
                     for product in list {
-                        if product.categories.count > 1 {
-                            if product.categories[1].categories_id == self.catId {
-                                self.products.append(product)
-                            }
-                        }
+                        self.products.append(product)
+
                     }
                     self.collectionView.reloadData {
                         self.stopAnimating()
@@ -64,7 +61,7 @@ class ProductsViewController: BaseViewController, UICollectionViewDelegate, UICo
             }
             else{
                 self.stopAnimating()
-                self.view.makeToast("Nil")
+                self.view.makeToast("response Nil")
             }
         }
 
@@ -80,7 +77,7 @@ class ProductsViewController: BaseViewController, UICollectionViewDelegate, UICo
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductCell", for: indexPath) as? ProductCell else{fatalError("Failed")}
         let url = "http://divicards2.sensitivetime.com/" + self.products[indexPath.row].products_image
         cell.image.load(url: url)
-        cell.firstTextField.text = "$"+String(round(products[indexPath.row].products_price * 100)/100)
+        cell.firstTextField.text = "JOD \(roundTOJOD(value: products[indexPath.row].products_price))"
         cell.secondTextField.text = products[indexPath.row].products_name
         cell.layer.masksToBounds = true
         cell.layer.cornerRadius = 15
@@ -100,6 +97,12 @@ class ProductsViewController: BaseViewController, UICollectionViewDelegate, UICo
     //MARK:- Extra Functions
     @IBAction func exitButtonPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    func roundTOJOD(value : String) -> Double{
+        var numericValue = Double(value) ?? 1000
+        let y = Double(round(100*numericValue)/100) ?? 100
+        return(y)  // 1.236
     }
     
 }
