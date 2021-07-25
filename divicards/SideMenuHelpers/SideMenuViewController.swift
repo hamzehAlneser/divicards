@@ -17,7 +17,6 @@ class SideMenuViewController: UIViewController,UITableViewDelegate,UITableViewDa
         SideMenuModel(icon: UIImage(named:"OffersLogo")!, title: "Offers"),
         SideMenuModel(icon: UIImage(named:"ProfileLogo")!, title: "Profile"),
         SideMenuModel(icon: UIImage(named:"HistoryLogo")!, title: "History"),
-        SideMenuModel(icon: UIImage(), title: "My Master Card"),
         SideMenuModel(icon: UIImage(), title: "About Us"),
         SideMenuModel(icon: UIImage(), title: "Contact Us"),
         

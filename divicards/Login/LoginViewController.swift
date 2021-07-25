@@ -29,10 +29,13 @@ class LoginViewController: BaseViewController {
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     override func viewDidAppear(_ animated: Bool) {
-        NetworkManager.isUnReachableViaWiFi() { _ in
+        NetworkManager.isUnreachable() { _ in
             self.navigationController?.setNavigationBarHidden(true, animated: true)
             self.performSegue(withIdentifier: "HomeToNoWifi", sender: self)
         }
+        let designHelper = DesignHelper()
+        manageButtonsDesign(helper: designHelper)
+        managetextFeildDesign(helper: designHelper)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -44,11 +47,10 @@ class LoginViewController: BaseViewController {
     override func viewDidLoad() {
 
         
-        let designHelper = DesignHelper()
+        
         super.viewDidLoad()
 
-        manageButtonsDesign(helper: designHelper)
-        managetextFeildDesign(helper: designHelper)
+        
         
         UserDefaults.standard.set(nil, forKey: "UserEmail") //setObject
         UserDefaults.standard.set(nil, forKey: "UserPassword")
@@ -76,31 +78,7 @@ class LoginViewController: BaseViewController {
             self.view.makeToast("Enter password")
         }
         else{
-            startLoadingWithUIBlocker()
-            loginRepositry.loginRequest(url:self.serviceConstants.loginUrl , email: emailTextField.text!, password: passwordTextField.text!) { (response) in
-                self.stopAnimating()
-
-                if(response != nil){
-                    if response?.success == "1" {
-                        var UserData = response?.data.first
-                        UserDefaults.standard.set(UserData?.email, forKey: "UserEmail") //setObject
-                        UserDefaults.standard.set(UserData?.password, forKey: "UserPassword")
-                        UserDefaults.standard.set(UserData?.id, forKey: "UserId") //setObject
-                        UserDefaults.standard.set(UserData?.first_name, forKey: "UserFirstName") //setObject
-                        UserDefaults.standard.set(UserData?.last_name, forKey: "UserLastName") //setObject
-                        UserDefaults.standard.set(UserData?.phone, forKey: "UserPhone")
-                        UserDefaults.standard.set(UserData?.gender, forKey: "UserGender")
-                        self.stopLoadingWithUIBlocker()
-                        self.performSegue(withIdentifier: "LoginSegue", sender: self)
-                    }
-                    else{
-                        self.view.makeToast(response?.message)
-                    }
-
-                }else{
-                    self.view.makeToast("Error Connecting to server")
-                }
-            }
+            loginUser(email: emailTextField.text!, password: passwordTextField.text!)
         }
     }
     
@@ -122,6 +100,34 @@ class LoginViewController: BaseViewController {
            return randomString
     }
     
+    func loginUser(email : String , password : String) {
+        startLoadingWithUIBlocker()
+        loginRepositry.loginRequest(url:self.serviceConstants.loginUrl , email: email, password: password) { (response) in
+            self.stopAnimating()
+
+            if(response != nil){
+                if response?.success == "1" {
+                    var UserData = response?.data.first
+                    UserDefaults.standard.set(UserData?.email, forKey: "UserEmail") //setObject
+                    UserDefaults.standard.set(UserData?.password, forKey: "UserPassword")
+                    UserDefaults.standard.set(UserData?.id, forKey: "UserId") //setObject
+                    UserDefaults.standard.set(UserData?.first_name, forKey: "UserFirstName") //setObject
+                    UserDefaults.standard.set(UserData?.last_name, forKey: "UserLastName") //setObject
+                    UserDefaults.standard.set(UserData?.phone, forKey: "UserPhone")
+                    UserDefaults.standard.set(UserData?.gender, forKey: "UserGender")
+                    self.stopLoadingWithUIBlocker()
+                    self.performSegue(withIdentifier: "LoginSegue", sender: self)
+                }
+                else{
+                    self.view.makeToast(response?.message)
+                }
+
+            }else{
+                self.view.makeToast("Error Connecting to server")
+            }
+        }
+    }
+    
     
     //design buttons
     func manageButtonsDesign(helper: DesignHelper) {
@@ -140,4 +146,18 @@ class LoginViewController: BaseViewController {
     
 
 
+}
+
+extension String {
+    var htmlToAttributedString: NSAttributedString? {
+        guard let data = data(using: .utf8) else { return nil }
+        do {
+            return try NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding:String.Encoding.utf8.rawValue], documentAttributes: nil)
+        } catch {
+            return nil
+        }
+    }
+    var htmlToString: String {
+        return htmlToAttributedString?.string ?? ""
+    }
 }

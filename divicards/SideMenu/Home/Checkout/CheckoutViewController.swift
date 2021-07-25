@@ -29,8 +29,6 @@ class CheckoutViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         priceTextField.layer.cornerRadius = 15
-        selectedProduct?.products_quantity = "0"
-        self.selectedProduct?.products_quantity = "2"
         let backImage = UIImage(systemName: "arrow.backward")!.withRenderingMode(.alwaysOriginal)
         UINavigationBar.appearance().backIndicatorImage = backImage
         UINavigationBar.appearance().backIndicatorTransitionMaskImage = backImage
@@ -69,7 +67,7 @@ class CheckoutViewController: BaseViewController {
         let helper = DesignHelper()
         helper.addLineBelowTextFieldWithConstant(textField: infoTextField, constant: 0)
         infoTextField.text = product.categories.first?.categories_name
-        descriptionTextView.text = product.products_description
+        descriptionTextView.attributedText = product.products_description.htmlToAttributedString
         }
 }
 extension CheckoutViewController{

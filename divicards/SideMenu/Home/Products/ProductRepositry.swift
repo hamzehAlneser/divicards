@@ -13,7 +13,7 @@ struct ProductRepositry {
         let parameters = ["categories_id" : catId,
                           "language_id" : "1",
                           "type" : "a to z",
-                          "currency_code" : "USD"]
+                          "currency_code" : "JOD"]
         
 
         AF.request(serviceConstants.ProductsUrl, method: .post, parameters: parameters, encoding: URLEncoding.default, headers: serviceConstants.getHeaders(), interceptor: nil, requestModifier: nil).response { (data) in

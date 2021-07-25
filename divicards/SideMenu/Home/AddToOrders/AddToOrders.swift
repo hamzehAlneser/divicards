@@ -42,12 +42,12 @@ class AddToOrders: BaseViewController {
     func fillInfo(product : ProductData) {
         
         productLabel.text = product.products_name
-        productPriceLabel.text = String(round(Double(product.products_price) ?? 0 * 100)/100)
+        productPriceLabel.text = product.products_price
         contactTextField.text = UserDefaults.standard.string(forKey: "UserPhone")
         if UserDefaults.standard.string(forKey: "UserFirstName") != nil {
             nameLabel.text = UserDefaults.standard.string(forKey: "UserFirstName")! + UserDefaults.standard.string(forKey: "UserLastName")!
         }
-//        totalLabel.text = String(round(Double(product.products_price) ?? 0 * 100/100 + 2)
+        totalLabel.text = String(Double(product.products_price) ?? 100+2)
         
     }
     
@@ -90,10 +90,12 @@ class AddToOrders: BaseViewController {
         }
 
         else {
+            startLoadingWithUIBlocker()
             var productID = Int(self.product?.products_id ?? "0")
             var addToOrdersRepository = AddToOrdersRepository()
             addToOrdersRepository.AddToOrdersRequest(products_id: productID ?? 0, products_name: self.product?.products_name ?? "Unknown", price: self.product?.products_price ?? "Unknown", name: UserDefaults.standard.string(forKey: "UserFirstName") ?? "Unknown", phone: UserDefaults.standard.string(forKey: "UserPhone") ?? "Unknown") { response in
-                print(response?.message)
+                self.stopAnimating()
+                self.view.makeToast(response?.message)
             }
             }
         }

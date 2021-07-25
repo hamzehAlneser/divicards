@@ -34,7 +34,7 @@ class ProfileViewController: BaseViewController {
     
     func fillTextFieldsPlaceHolder() {
         nameTextField.text = UserDefaults.standard.string(forKey: "UserFirstName")
-        lastNameTextField.text = UserDefaults.standard.string(forKey: "UserLastName")
+        lastNameTextField.text = "Area"
         emailTextField.text = UserDefaults.standard.string(forKey: "UserEmail")
         phoneNumberTextField.text = UserDefaults.standard.string(forKey: "UserPhone")
         

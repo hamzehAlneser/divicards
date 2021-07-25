@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>252240055770-56vgreea9cj1lqaksk15vivpbdnoihpi.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.252240055770-56vgreea9cj1lqaksk15vivpbdnoihpi</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCKF9xJrBHPVAv_RgnBlldZ8qeoSum5AXs</string>
+	<key>GCM_SENDER_ID</key>
+	<string>252240055770</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.albertapayment.divicards</string>
+	<key>PROJECT_ID</key>
+	<string>divicards-29dc1</string>
+	<key>STORAGE_BUCKET</key>
+	<string>divicards-29dc1.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:252240055770:ios:414f7aa0d821e05f1944e3</string>
+</dict>
+</plist>

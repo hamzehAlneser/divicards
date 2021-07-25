@@ -24,13 +24,15 @@ class RegisterController: BaseViewController,CountryPickerDelegate {
 
     var countryPickerVc : CountryPickerController? = nil
     var gender = "1"
-    var code = "00962"
+    var code = "+962"
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
 //        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
     }
+    
+
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -41,6 +43,15 @@ class RegisterController: BaseViewController,CountryPickerDelegate {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.titleView = UIView()
+
+        UserDefaults.standard.set(nil, forKey: "UserEmail") //setObject
+        UserDefaults.standard.set(nil, forKey: "UserPassword")
+        UserDefaults.standard.set(nil, forKey: "UserId") //setObject
+        UserDefaults.standard.set(nil, forKey: "UserFirstName") //setObject
+        UserDefaults.standard.set(nil, forKey: "UserLastName") //setObject
+        UserDefaults.standard.set(nil, forKey: "UserPhone")
+        UserDefaults.standard.set(nil, forKey: "UserGender")
         let designHelper = DesignHelper()
         manageButtonDesigns(helper: designHelper)
         managetextFieldDesigns(helper: designHelper)
@@ -75,6 +86,9 @@ class RegisterController: BaseViewController,CountryPickerDelegate {
         else if passwordTextField.text == "" {
             self.view.makeToast("Enter password")
         }
+        else if passwordTextField.text?.count ?? 0 < 6 {
+            self.view.makeToast("Password must contain 6 characters at least")
+        }
         else if confirmPasswordTextField.text == "" {
             self.view.makeToast("Reneter Password")
         }
@@ -85,8 +99,12 @@ class RegisterController: BaseViewController,CountryPickerDelegate {
             self.view.makeToast("Enter Phone Number")
         }
 
+        else if phoneNumberTextField.text?.count != 9 {
+                self.view.makeToast("Enter a valid phone number")
+            }
         else {
             performSegue(withIdentifier: "RegisterToOTP", sender: self)
+        
 //            startLoadingWithUIBlocker()
 //            registerRepositry.RegisterRequest(firstName: firstNameTextField.text!, lastname: lastNameTextField.text!, email: emailAddressTextField.text!, password: passwordTextField.text!, phoneNumber: "\(code + phoneNumberTextField.text!)", gender: self.gender) { response in
 //                self.stopLoadingWithUIBlocker()
@@ -114,7 +132,7 @@ class RegisterController: BaseViewController,CountryPickerDelegate {
             self.pickCountryButton.setTitle(IsoCountries.flag(countryCode: countryCode)! + " \(countryCode) \(code)  ▼", for: .normal)
             var c = code
             c.remove(at: c.startIndex)
-            self.code = "00"
+            self.code = "+"
             self.code += c
         })
     }

@@ -9,13 +9,13 @@ import UIKit
 import Alamofire
 struct RegisterRepositry {
     let serviceConstants = ServiceConstants()
-    func RegisterRequest(firstName : String,lastname : String,email : String,password : String,phoneNumber : String, gender : String,completion: @escaping(_ response : RegisterResponse?) -> ()) {
-        let parameters = ["customers_firstname" : firstName,
-                          "customers_lastname" : lastname,
+    func RegisterRequest(email : String,password : String,phoneNumber : String,completion: @escaping(_ response : RegisterResponse?) -> ()) {
+        let parameters = ["customers_firstname" : "first",
+                          "customers_lastname" : "last",
                           "email" : email,
                           "password" : password,
                           "customers_telephone" : phoneNumber,
-                          "customers_gender" : gender]
+                          "customers_gender" : "1"]
 
         AF.request(serviceConstants.RegisterUrl, method: .post, parameters: parameters, encoding: URLEncoding.default, headers: serviceConstants.getHeaders(), interceptor: nil, requestModifier: nil).response { (data) in
 //            var a = firstName

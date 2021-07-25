@@ -8,21 +8,25 @@
 import UIKit
 import Alamofire
 struct AddToOrdersRepository {
+        func AddToOrdersRequest(products_id : Int,products_name : String, price : String, name : String, phone : String , completion: @escaping(_ response : AddToOrdersResponse?) -> ()) {
+    let product = Products(products_id: products_id, products_name: products_name, customers_basket_quantity: 1, price: price, final_price: price, attribtes: [])
+            let array : [Products] = [ product, ]
+                
     let serviceConstants = ServiceConstants()
-    func AddToOrdersRequest(products_id : Int,products_name : String, price : String, name : String, phone : String , completion: @escaping(_ response : AddToOrdersResponse?) -> ()) {
-        var product = Products(products_id: products_id, products_name: products_name, customers_basket_quantity: 1, price: price, final_price: price, attribtes: [])
-        var products : [Products] = [product,]
-        
 
-        let parameters = ["products":[product],
+
+        var products : [Products] = [product,]
+
+            
+            let parameters = ["products":[["products_id":products_id,"products_name":products_name,"customers_basket_quantity":1,"price":price,"final_price":price,"attribtes":[]]],
                           "guest_status":1,
                           "language_id":1,
-                          "email":"anahgfs@ff.ff",
-                          "delivery_firstname":"anas",
-                          "delivery_lastname":"alfasfus",
-                          "customers_telephone":"+962788261243",
+                          "email":UserDefaults.standard.string(forKey: "UserEmail"),
+                          "delivery_firstname":name,
+                          "delivery_lastname":name,
+                          "customers_telephone":phone,
                           "delivery_street_address":"cxgf",
-                          "totalPrice":"4.30",
+                          "totalPrice":price,
                           "currency_code":"USD",
                           "total_tax":0.00,
                           "is_coupon_applied":0,
@@ -32,38 +36,46 @@ struct AddToOrdersRepository {
                           "delivery_postcode":"678",
                           "delivery_zone":"678",
                           "delivery_country":"jo",
-                          "billing_firstname":"ty",
-                          "billing_lastname":"ty",
+                          "billing_firstname":name,
+                          "billing_lastname":name,
                           "billing_street_address":"ty",
                           "billing_suburb":"ty",
                           "billing_city":"ty",
                           "billing_postcode":"56",
                           "billing_zone":"56",
                           "billing_country":"ty",
-                          "delivery_phone":"23234",
-                          "billing_phone":"+962788261243",
+                          "delivery_phone":phone,
+                          "billing_phone":phone,
                           "shipping_cost":"2.00",
                           "shipping_method":"FlateRate"] as [String : Any]
+        print(parameters)
 
 
-        let request = AF.request(serviceConstants.AddToOrdersUrl, method: .post, parameters: parameters, encoding: URLEncoding.default, headers: serviceConstants.getHeaders(), interceptor: nil, requestModifier: nil)
+        let request = AF.request(serviceConstants.AddToOrdersUrl, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: serviceConstants.getHeaders(), interceptor: nil, requestModifier: nil)
         request.validate()
         print(request)
-        request.responseDecodable { (response: DataResponse<AddToOrdersResponse, AFError>) in
+            request.responseJSON(completionHandler: { (response) in
+                
+  
 
             guard let data = response.data else {return}
             do{
+                if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
+                    print("Data: \(utf8Text)")
+                }
                 let response = try JSONDecoder().decode(AddToOrdersResponse.self, from: data)
+
                 completion(response)
-                
+
             }
             catch{
+                print(error)
                 completion(nil)
             }
             print(response.error)
         }
-        
-    }
+
+    )}
 
 }
 
@@ -71,12 +83,13 @@ struct AddToOrdersRepository {
         
         
 
-struct Products:Decodable {
+struct Products:Codable {
     var products_id : Int
     var products_name : String
-    var customers_basket_quantity = 1
+    var customers_basket_quantity : Int
     var price : String
     var final_price : String
-    var attribtes : [String]
+    var attribtes : [JSONAny]
     
 }
+

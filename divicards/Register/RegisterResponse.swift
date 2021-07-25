@@ -19,4 +19,5 @@ struct RegisterData:Decodable {
     var gender : String
     var email : String
     var phone : String
+    var password : String
 }

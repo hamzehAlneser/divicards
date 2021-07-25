@@ -134,7 +134,7 @@ extension MainViewController {
         case "Profile":
             // Music
             if UserDefaults.standard.string(forKey: "UserId") == nil {
-                self.navigationController?.popViewController(animated: true)
+                self.navigationController?.popToRootViewController(animated: true)
             }
             else {
                 self.showViewController(viewController: UIViewController.self, storyboardId: "ProfileNav")
@@ -165,7 +165,7 @@ extension MainViewController {
             // Music
 //            self.dismiss(animated: false, completion: nil)
             self.sideMenuViewController.dismiss(animated: true) {
-                self.navigationController?.popViewController(animated: true)
+                self.navigationController?.popToRootViewController(animated: true)
 
             }
 
@@ -174,7 +174,6 @@ extension MainViewController {
         case "Logout":
             // Music
 //            self.dismiss(animated: false, completion: nil)
-            navigationController?.popViewController(animated: true)
             UserDefaults.standard.set(nil, forKey: "UserEmail") //setObject
             UserDefaults.standard.set(nil, forKey: "UserPassword")
             UserDefaults.standard.set(nil, forKey: "UserId") //setObject
@@ -182,7 +181,7 @@ extension MainViewController {
             UserDefaults.standard.set(nil, forKey: "UserLastName") //setObject
             UserDefaults.standard.set(nil, forKey: "UserPhone")
             UserDefaults.standard.set(nil, forKey: "UserGender")
-            dismiss(animated: true, completion: nil)
+            self.navigationController?.popToRootViewController(animated: true)
 
         default:
             break

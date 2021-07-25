@@ -77,7 +77,7 @@ class ProductsViewController: BaseViewController, UICollectionViewDelegate, UICo
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductCell", for: indexPath) as? ProductCell else{fatalError("Failed")}
         let url = "http://divicards2.sensitivetime.com/" + self.products[indexPath.row].products_image
         cell.image.load(url: url)
-        cell.firstTextField.text = "JOD \(roundTOJOD(value: products[indexPath.row].products_price))"
+        cell.firstTextField.text = "\(products[indexPath.row].currency) \(products[indexPath.row].products_price)"
         cell.secondTextField.text = products[indexPath.row].products_name
         cell.layer.masksToBounds = true
         cell.layer.cornerRadius = 15

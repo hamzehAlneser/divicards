@@ -6,7 +6,8 @@
 //
 
 struct AddToOrdersResponse:Decodable {
-    var success : String
-    var data : [CategoryData]
-    var message : String
+    var success: String
+    var data : [JSONAny]
+    var customer_id : String?
+    var message: String
 }

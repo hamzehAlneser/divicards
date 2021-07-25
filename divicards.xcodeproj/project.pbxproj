@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A03F56726AB74CC00A56888 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5A03F56626AB74CB00A56888 /* GoogleService-Info.plist */; };
 		5A0FD3B0263CEAE900525677 /* SideMenuLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0FD3AF263CEAE900525677 /* SideMenuLoginViewController.swift */; };
 		5A34F29426489971003EE280 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A34F29326489971003EE280 /* LoginResponse.swift */; };
 		5A34F2A42648AE55003EE280 /* ServiceConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A34F2A32648AE55003EE280 /* ServiceConstants.swift */; };
@@ -97,6 +98,8 @@
 		0CC6FCCEDA0369A7A54601E0 /* Pods-divicards.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-divicards.release.xcconfig"; path = "Target Support Files/Pods-divicards/Pods-divicards.release.xcconfig"; sourceTree = "<group>"; };
 		1DD6C60B0CEF19F8006A7E30 /* Pods-divicards.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-divicards.debug.xcconfig"; path = "Target Support Files/Pods-divicards/Pods-divicards.debug.xcconfig"; sourceTree = "<group>"; };
 		4A9115409367390A668692BE /* Pods-divicards-divicardsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-divicards-divicardsUITests.release.xcconfig"; path = "Target Support Files/Pods-divicards-divicardsUITests/Pods-divicards-divicardsUITests.release.xcconfig"; sourceTree = "<group>"; };
+		5A03F56626AB74CB00A56888 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5A03F56826AB760C00A56888 /* divicards.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = divicards.entitlements; sourceTree = "<group>"; };
 		5A0FD3AF263CEAE900525677 /* SideMenuLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuLoginViewController.swift; sourceTree = "<group>"; };
 		5A34F29326489971003EE280 /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
 		5A34F2A32648AE55003EE280 /* ServiceConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceConstants.swift; sourceTree = "<group>"; };
@@ -265,7 +268,7 @@
 			isa = PBXGroup;
 			children = (
 				5A61F220266AE1540009B8D0 /* Products */,
-				5AB3ADBA2671281F00EBCED1 /* Final_Page */,
+				5AB3ADBA2671281F00EBCED1 /* AddToOrders */,
 				5AB3ADB92671280900EBCED1 /* Main_Categories */,
 				5AB45E6E266C39890034040C /* Credit_Card_Or_Cash */,
 				5A9DA2C2266B7BFD004B97DC /* Checkout */,
@@ -316,14 +319,14 @@
 			path = Main_Categories;
 			sourceTree = "<group>";
 		};
-		5AB3ADBA2671281F00EBCED1 /* Final_Page */ = {
+		5AB3ADBA2671281F00EBCED1 /* AddToOrders */ = {
 			isa = PBXGroup;
 			children = (
 				5AB3ADBB2671289700EBCED1 /* AddToOrders.swift */,
 				5A4E7C4226A6572E00972838 /* AddToOrdersRepository.swift */,
 				5A4E7C4426A65AA500972838 /* AddToOrdersResponse.swift */,
 			);
-			path = Final_Page;
+			path = AddToOrders;
 			sourceTree = "<group>";
 		};
 		5AB3ADC226717A6A00EBCED1 /* Profile */ = {
@@ -406,6 +409,8 @@
 		5AE608E92625F298001BED07 /* divicards */ = {
 			isa = PBXGroup;
 			children = (
+				5A03F56826AB760C00A56888 /* divicards.entitlements */,
+				5A03F56626AB74CB00A56888 /* GoogleService-Info.plist */,
 				5AAEF0F826325CCC00605E21 /* Helpers */,
 				5AE608EA2625F298001BED07 /* AppDelegate.swift */,
 				5AE608EC2625F298001BED07 /* SceneDelegate.swift */,
@@ -579,6 +584,7 @@
 				5A9DA2C6266B834D004B97DC /* Main.storyboard in Resources */,
 				5A61F21F266986420009B8D0 /* SubCategoryCell.xib in Resources */,
 				5A7BD801263F471700F3D311 /* CountryPickerCell.xib in Resources */,
+				5A03F56726AB74CC00A56888 /* GoogleService-Info.plist in Resources */,
 				5A4E7C4E26A8518000972838 /* HistoryTableViewCell.xib in Resources */,
 				5A61C223268A523A006E7366 /* CategoryCell.xib in Resources */,
 			);
@@ -929,18 +935,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = divicards/divicards.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 68Q4PCULF2;
+				DEVELOPMENT_TEAM = 93F2B42F6H;
 				INFOPLIST_FILE = divicards/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.hamzehkareem.divicards;
+				PRODUCT_BUNDLE_IDENTIFIER = com.albertapayment.divicards;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -950,18 +957,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = divicards/divicards.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 68Q4PCULF2;
+				DEVELOPMENT_TEAM = 93F2B42F6H;
 				INFOPLIST_FILE = divicards/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.hamzehkareem.divicards;
+				PRODUCT_BUNDLE_IDENTIFIER = com.albertapayment.divicards;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

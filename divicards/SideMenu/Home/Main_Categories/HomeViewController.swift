@@ -154,13 +154,13 @@ class HomeViewController: BaseViewController,UITableViewDelegate,UITableViewData
         if getRandomProductSize() == 1 {
              height = 120
             if tableView == leftTableView {
-                contentViewHeight += 40
+                contentViewHeight += 50
             }
          }
          else{
             height = 170
             if tableView == leftTableView {
-                contentViewHeight += 65
+                contentViewHeight += 70
             }
          }
         return height
