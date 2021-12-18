@@ -27,9 +27,10 @@ class LoginViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
+
     }
     override func viewDidAppear(_ animated: Bool) {
-        NetworkManager.isUnreachable() { _ in
+        NetworkManager.isUnReachableViaWiFi() { _ in
             self.navigationController?.setNavigationBarHidden(true, animated: true)
             self.performSegue(withIdentifier: "HomeToNoWifi", sender: self)
         }
@@ -44,21 +45,32 @@ class LoginViewController: BaseViewController {
     }
     
     
+    
     override func viewDidLoad() {
 
         
         
         super.viewDidLoad()
+        
+        if UserDefaults.standard.string(forKey: "UserPassword") != nil && UserDefaults.standard.string(forKey: "UserEmail") != nil {
 
-        
-        
-        UserDefaults.standard.set(nil, forKey: "UserEmail") //setObject
-        UserDefaults.standard.set(nil, forKey: "UserPassword")
-        UserDefaults.standard.set(nil, forKey: "UserId") //setObject
-        UserDefaults.standard.set(nil, forKey: "UserFirstName") //setObject
-        UserDefaults.standard.set(nil, forKey: "UserLastName") //setObject
-        UserDefaults.standard.set(nil, forKey: "UserPhone")
-        UserDefaults.standard.set(nil, forKey: "UserGender")
+            loginUser(email: UserDefaults.standard.string(forKey: "UserEmail")!, password: UserDefaults.standard.string(forKey: "UserPassword")!)
+
+            
+        }
+        else{
+            
+            
+            UserDefaults.standard.set(nil, forKey: "UserEmail") //setObject
+            UserDefaults.standard.set(nil, forKey: "UserPassword")
+            UserDefaults.standard.set(nil, forKey: "UserId") //setObject
+            UserDefaults.standard.set(nil, forKey: "UserFirstName") //setObject
+            UserDefaults.standard.set(nil, forKey: "UserLastName") //setObject
+            UserDefaults.standard.set(nil, forKey: "UserPhone")
+            UserDefaults.standard.set(nil, forKey: "UserGender")
+        }
+
+
 
     }
     
@@ -71,6 +83,8 @@ class LoginViewController: BaseViewController {
     }
 
     @IBAction func loginButtonPressed(_ sender: Any) {
+        UserDefaults.standard.set(self.emailTextField.text, forKey: "UserEmail") //setObject
+        UserDefaults.standard.set(self.passwordTextField.text, forKey: "UserPassword")
         if emailTextField.text == "" {
             self.view.makeToast("Enter email")
         }
@@ -102,14 +116,14 @@ class LoginViewController: BaseViewController {
     
     func loginUser(email : String , password : String) {
         startLoadingWithUIBlocker()
+
         loginRepositry.loginRequest(url:self.serviceConstants.loginUrl , email: email, password: password) { (response) in
             self.stopAnimating()
 
             if(response != nil){
                 if response?.success == "1" {
                     var UserData = response?.data.first
-                    UserDefaults.standard.set(UserData?.email, forKey: "UserEmail") //setObject
-                    UserDefaults.standard.set(UserData?.password, forKey: "UserPassword")
+
                     UserDefaults.standard.set(UserData?.id, forKey: "UserId") //setObject
                     UserDefaults.standard.set(UserData?.first_name, forKey: "UserFirstName") //setObject
                     UserDefaults.standard.set(UserData?.last_name, forKey: "UserLastName") //setObject
@@ -159,5 +173,28 @@ extension String {
     }
     var htmlToString: String {
         return htmlToAttributedString?.string ?? ""
+    }
+}
+
+extension UIViewController {
+
+    func addLogoToNavigationBarItem() {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = UIImage(named: "main_logo")
+        //imageView.backgroundColor = .lightGray
+
+        // In order to center the title view image no matter what buttons there are, do not set the
+        // image view as title view, because it doesn't work. If there is only one button, the image
+        // will not be aligned. Instead, a content view is set as title view, then the image view is
+        // added as child of the content view. Finally, using constraints the image view is aligned
+        // inside its parent.
+        let contentView = UIView()
+        self.navigationItem.titleView = contentView
+        self.navigationItem.titleView?.addSubview(imageView)
+        imageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        imageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
     }
 }

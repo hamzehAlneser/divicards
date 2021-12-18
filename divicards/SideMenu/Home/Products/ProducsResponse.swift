@@ -14,22 +14,23 @@ struct ProductResponse : Decodable {
 }
 
 struct ProductData : Decodable {
-    var products_id : String
+    var products_id : Int
     var products_image : String
     var products_price : String
     var products_name : String
-    var products_quantity : String
+    var products_quantity : Int
     var currency : String
     var products_description : String
     var categories : [CategoryDataForProduct]
+    var defaultStock : Int
 }
 
 struct CategoryDataForProduct:Decodable {
-    var categories_id : String
+    var categories_id : Int
     var categories_name : String
     var categories_image : String
     var categories_icon : String
-    var parent_id : String
+    var parent_id : Int
 }
 
 

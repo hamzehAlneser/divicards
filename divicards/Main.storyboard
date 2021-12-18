@@ -532,34 +532,8 @@
                                             <constraint firstItem="qIo-fh-gkh" firstAttribute="centerY" secondItem="fyi-FZ-W6Z" secondAttribute="centerY" id="sgm-5X-QB8"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HIE-VY-D1f">
-                                        <rect key="frame" x="0.0" y="164" width="375" height="213.5"/>
-                                        <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fxW-fI-dIf">
-                                                <rect key="frame" x="40" y="40" width="295" height="133.5"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Credit/Debit Card" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9pN-tu-juw">
-                                                        <rect key="frame" x="71" y="55" width="153" height="24"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                        <color key="textColor" systemColor="systemTealColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                                <constraints>
-                                                    <constraint firstItem="9pN-tu-juw" firstAttribute="centerY" secondItem="fxW-fI-dIf" secondAttribute="centerY" id="A1l-KB-cut"/>
-                                                    <constraint firstItem="9pN-tu-juw" firstAttribute="centerX" secondItem="fxW-fI-dIf" secondAttribute="centerX" id="RPm-2O-Yvc"/>
-                                                </constraints>
-                                            </view>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="fxW-fI-dIf" secondAttribute="trailing" constant="40" id="58w-V7-G7G"/>
-                                            <constraint firstItem="fxW-fI-dIf" firstAttribute="top" secondItem="HIE-VY-D1f" secondAttribute="top" constant="40" id="J1h-qK-4Dy"/>
-                                            <constraint firstAttribute="bottom" secondItem="fxW-fI-dIf" secondAttribute="bottom" constant="40" id="Ne4-oM-xKY"/>
-                                            <constraint firstItem="fxW-fI-dIf" firstAttribute="leading" secondItem="HIE-VY-D1f" secondAttribute="leading" constant="40" id="pni-zQ-LC2"/>
-                                        </constraints>
-                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l5f-wp-6ze">
-                                        <rect key="frame" x="0.0" y="377.5" width="375" height="213.5"/>
+                                        <rect key="frame" x="0.0" y="164" width="375" height="213.5"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l15-K7-ToT">
                                                 <rect key="frame" x="40" y="40" width="295" height="133.5"/>
@@ -577,6 +551,32 @@
                                             <constraint firstAttribute="bottom" secondItem="l15-K7-ToT" secondAttribute="bottom" constant="40" id="IH0-Bz-sap"/>
                                             <constraint firstAttribute="trailing" secondItem="l15-K7-ToT" secondAttribute="trailing" constant="40" id="niG-Kf-u1B"/>
                                             <constraint firstItem="l15-K7-ToT" firstAttribute="top" secondItem="l5f-wp-6ze" secondAttribute="top" constant="40" id="tyV-dq-Xoq"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HIE-VY-D1f">
+                                        <rect key="frame" x="0.0" y="377.5" width="375" height="213.5"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fxW-fI-dIf">
+                                                <rect key="frame" x="40" y="40" width="295" height="133.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9pN-tu-juw">
+                                                        <rect key="frame" x="147.5" y="67" width="0.0" height="0.0"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                        <color key="textColor" systemColor="systemTealColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="9pN-tu-juw" firstAttribute="centerY" secondItem="fxW-fI-dIf" secondAttribute="centerY" id="A1l-KB-cut"/>
+                                                    <constraint firstItem="9pN-tu-juw" firstAttribute="centerX" secondItem="fxW-fI-dIf" secondAttribute="centerX" id="RPm-2O-Yvc"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="fxW-fI-dIf" secondAttribute="trailing" constant="40" id="58w-V7-G7G"/>
+                                            <constraint firstItem="fxW-fI-dIf" firstAttribute="top" secondItem="HIE-VY-D1f" secondAttribute="top" constant="40" id="J1h-qK-4Dy"/>
+                                            <constraint firstAttribute="bottom" secondItem="fxW-fI-dIf" secondAttribute="bottom" constant="40" id="Ne4-oM-xKY"/>
+                                            <constraint firstItem="fxW-fI-dIf" firstAttribute="leading" secondItem="HIE-VY-D1f" secondAttribute="leading" constant="40" id="pni-zQ-LC2"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -677,7 +677,7 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Contact No" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zPz-sI-J9N">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Number(Ex +962777777777)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zPz-sI-J9N">
                                                         <rect key="frame" x="0.0" y="72.5" width="335" height="52.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -740,8 +740,8 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wPi-wd-wYM">
                                                         <rect key="frame" x="0.0" y="42" width="335" height="34.5"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 JD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tna-09-hc9">
-                                                                <rect key="frame" x="288" y="6.5" width="37" height="21.5"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JOD 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tna-09-hc9">
+                                                                <rect key="frame" x="274.5" y="6.5" width="50.5" height="21.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                                 <color key="textColor" red="0.71215293800000001" green="0.2115459583" blue="0.27843617079999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <nil key="highlightedColor"/>
@@ -825,7 +825,6 @@
                     <connections>
                         <outlet property="areaTextField" destination="51J-Ex-XvP" id="92a-Jj-ElN"/>
                         <outlet property="contactTextField" destination="zPz-sI-J9N" id="1wp-jj-7di"/>
-                        <outlet property="dileveryFeesLabel" destination="Tna-09-hc9" id="xd3-dH-8fb"/>
                         <outlet property="dileveryView" destination="wPi-wd-wYM" id="AsW-yn-HAd"/>
                         <outlet property="nameLabel" destination="tn3-jY-rBL" id="gWh-V3-H4s"/>
                         <outlet property="orderButton" destination="Kv2-yY-aBD" id="sz0-So-aTA"/>
@@ -1048,7 +1047,7 @@
                                                                                     <action selector="pickCountryPressed:" destination="XQ4-tu-T5a" eventType="touchUpInside" id="fcb-pf-Gee"/>
                                                                                 </connections>
                                                                             </button>
-                                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TDI-ac-wO3">
+                                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone Number (7xxxxxxxx)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TDI-ac-wO3">
                                                                                 <rect key="frame" x="106" y="0.0" width="212" height="52"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -1873,25 +1872,25 @@
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mC2-bB-AK1">
                                                         <rect key="frame" x="0.0" y="0.0" width="345" height="60"/>
-                                                        <color key="textColor" systemColor="systemGrayColor"/>
+                                                        <color key="textColor" red="0.16393802169999999" green="0.16430747870000001" blue="0.16994534180000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QdW-n8-IzN">
                                                         <rect key="frame" x="0.0" y="70" width="345" height="60"/>
-                                                        <color key="textColor" systemColor="systemGrayColor"/>
+                                                        <color key="textColor" red="0.16393802169999999" green="0.16430747870000001" blue="0.16994534180000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pjp-1r-N9u">
                                                         <rect key="frame" x="0.0" y="140" width="345" height="60"/>
-                                                        <color key="textColor" systemColor="systemGrayColor"/>
+                                                        <color key="textColor" red="0.16393802169999999" green="0.16430747870000001" blue="0.16994534180000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Area" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8tU-cb-nM3">
                                                         <rect key="frame" x="0.0" y="210" width="345" height="60"/>
-                                                        <color key="textColor" systemColor="systemGrayColor"/>
+                                                        <color key="textColor" red="0.16393802169999999" green="0.16430747870000001" blue="0.16994534180000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
@@ -2095,7 +2094,7 @@
         <!--Main View Controller-->
         <scene sceneID="EGe-8s-kbl">
             <objects>
-                <viewController id="s1u-ya-uXa" customClass="MainViewController" customModule="divicards" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mainNav" id="s1u-ya-uXa" customClass="MainViewController" customModule="divicards" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xg1-tB-A8n">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2155,8 +2154,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="1tA-IN-jBw"/>
-        <segue reference="jxQ-Ok-lF5"/>
+        <segue reference="fbO-HG-opE"/>
+        <segue reference="p3K-o1-MUF"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.backward" catalog="system" width="128" height="98"/>

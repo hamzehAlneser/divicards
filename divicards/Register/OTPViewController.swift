@@ -21,16 +21,7 @@ class OTPViewController: BaseViewController {
 
         let designHelper = DesignHelper()
         designHelper.addLineBelowTextField(textField: otpCodeTextField)
-        Auth.auth().settings?.isAppVerificationDisabledForTesting = false
-        PhoneAuthProvider.provider()
-            .verifyPhoneNumber(phone ?? "", uiDelegate: nil) { verificationID, error in
-              if let error = error {
-                self.view.makeToast(error.localizedDescription)
-                return
-              }
-              // Sign in using the verificationID and the code sent to the user
-              // ...
-          }
+        verifyPhoneNumber()
         
         Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: true)
     }
@@ -55,7 +46,7 @@ class OTPViewController: BaseViewController {
             self.view.makeToast("Enter OTP")
         }
         else{
-            verifyPhoneNumber()
+        
         signIn(verificationCode: otpCodeTextField.text ?? "")
     }
     }
@@ -97,25 +88,34 @@ class OTPViewController: BaseViewController {
                 let registerRepository = RegisterRepositry()
                 registerRepository.RegisterRequest(email: self.email ?? "", password: self.pass ?? "", phoneNumber: self.phone ?? "") { response in
                     if response != nil{
-                        var UserData = response?.data.first
-                        UserDefaults.standard.set(UserData?.id, forKey: "UserId")
-                        UserDefaults.standard.set(UserData?.email, forKey: "UserEmail") //setObject
-                        UserDefaults.standard.set(UserData?.password, forKey: "UserPassword")
-                        UserDefaults.standard.set(UserData?.id, forKey: "UserId") //setObject
-                        UserDefaults.standard.set(UserData?.first_name, forKey: "UserFirstName") //setObject
-                        UserDefaults.standard.set(UserData?.last_name, forKey: "UserLastName") //setObject
-                        UserDefaults.standard.set(UserData?.phone, forKey: "UserPhone")
-                        UserDefaults.standard.set(UserData?.gender, forKey: "UserGender")
-                      self.stopLoadingWithUIBlocker()
-                     self.performSegue(withIdentifier: "OTPToHomeSegue", sender: self)
+                        if response?.success == "1" {
+                            var UserData = response?.data.first
+                            UserDefaults.standard.set(UserData?.id, forKey: "UserId")
+                            UserDefaults.standard.set(UserData?.email, forKey: "UserEmail") //setObject
+                            UserDefaults.standard.set(UserData?.password, forKey: "UserPassword")
+                            UserDefaults.standard.set(UserData?.id, forKey: "UserId") //setObject
+                            UserDefaults.standard.set(UserData?.first_name, forKey: "UserFirstName") //setObject
+                            UserDefaults.standard.set(UserData?.last_name, forKey: "UserLastName") //setObject
+                            UserDefaults.standard.set(UserData?.phone, forKey: "UserPhone")
+                            UserDefaults.standard.set(UserData?.gender, forKey: "UserGender")
+                          self.stopLoadingWithUIBlocker()
+                         self.performSegue(withIdentifier: "OTPToHomeSegue", sender: self)
+                        }
+                        else{
+                            self.stopLoadingWithUIBlocker()
+
+                            self.view.makeToast(response?.message)
+                        }
+
                     }
                     else{
+                        self.stopLoadingWithUIBlocker()
+
                         self.view.makeToast("Something went wrong")
                     }
                 }
         }
-        
-       
+
     }
         }
 

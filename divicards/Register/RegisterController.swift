@@ -99,9 +99,6 @@ class RegisterController: BaseViewController,CountryPickerDelegate {
             self.view.makeToast("Enter Phone Number")
         }
 
-        else if phoneNumberTextField.text?.count != 9 {
-                self.view.makeToast("Enter a valid phone number")
-            }
         else {
             performSegue(withIdentifier: "RegisterToOTP", sender: self)
         

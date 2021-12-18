@@ -1,0 +1,6 @@
+framework module Pods_divicards {
+  umbrella header "Pods-divicards-umbrella.h"
+
+  export *
+  module * { export * }
+}

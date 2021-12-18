@@ -13,7 +13,7 @@ struct RegisterResponse : Decodable {
 
 }
 struct RegisterData:Decodable {
-    var id : String
+    var id : Int
     var first_name : String
     var last_name : String
     var gender : String

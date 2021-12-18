@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftSoup
 class CheckoutViewController: BaseViewController {
     
     @IBOutlet weak var stockButton: UIButton!
@@ -19,11 +20,12 @@ class CheckoutViewController: BaseViewController {
     var selectedProduct : ProductData?
     
     override func viewWillAppear(_ animated: Bool) {
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-        imageView.contentMode = .scaleAspectFit
-            let image = UIImage(named: "main_logo")
-            imageView.image = image
-            navigationItem.titleView = imageView
+//        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+//        imageView.contentMode = .scaleAspectFit
+//            let image = UIImage(named: "main_logo")
+//            imageView.image = image
+//            navigationItem.titleView = imageView
+        addLogoToNavigationBarItem()
     }
     
     override func viewDidLoad() {
@@ -37,7 +39,7 @@ class CheckoutViewController: BaseViewController {
         fillProductInfo(product: selectedProduct!)
     }
     @IBAction func buttonPressed(_ sender: Any) {
-        if (selectedProduct!.products_quantity != "0") {
+        if (selectedProduct!.defaultStock != 0) {
             performSegue(withIdentifier: "checkoutToCredit", sender: self)
         }
         else {
@@ -50,9 +52,11 @@ class CheckoutViewController: BaseViewController {
     }
     func fillProductInfo(product : ProductData) {
         priceTextField.text = product.products_name
-        let url = "http://divicards2.sensitivetime.com/" + product.products_image
+//        priceTextField.text = "divicards products"
+        let url = "https://divi-cards.com/" + product.products_image
+//        productImage.image = UIImage(named: "card")
         productImage.load(url: url)
-        if Int(product.products_quantity)! > 0 {
+        if product.defaultStock > 0 {
             inStockLabe.text = "In Stock"
             inStockLabe.textColor = #colorLiteral(red: 0.20513919, green: 0.5954503417, blue: 0.8653187156, alpha: 1)
             stockButton.setTitle("Proceed", for: .normal)
@@ -64,11 +68,15 @@ class CheckoutViewController: BaseViewController {
             inStockLabe.textColor = UIColor.red
         }
         infoLabel.text = product.products_name
+//        infoLabel.text = "Divicards"
         let helper = DesignHelper()
         helper.addLineBelowTextFieldWithConstant(textField: infoTextField, constant: 0)
         infoTextField.text = product.categories.first?.categories_name
-        descriptionTextView.attributedText = product.products_description.htmlToAttributedString
-        }
+//        infoTextField.text = "divicards products"
+        descriptionTextView.attributedText = selectedProduct?.products_description.htmlToAttributedString
+//            descriptionTextView.text = "divicards products"
+        
+    }
 }
 extension CheckoutViewController{
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

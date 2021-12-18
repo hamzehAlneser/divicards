@@ -21,7 +21,7 @@ struct AddToOrdersRepository {
             let parameters = ["products":[["products_id":products_id,"products_name":products_name,"customers_basket_quantity":1,"price":price,"final_price":price,"attribtes":[]]],
                           "guest_status":1,
                           "language_id":1,
-                          "email":UserDefaults.standard.string(forKey: "UserEmail"),
+                          "email":UserDefaults.standard.string(forKey: "UserEmail") ?? "Unknown",
                           "delivery_firstname":name,
                           "delivery_lastname":name,
                           "customers_telephone":phone,
@@ -72,7 +72,7 @@ struct AddToOrdersRepository {
                 print(error)
                 completion(nil)
             }
-            print(response.error)
+            
         }
 
     )}

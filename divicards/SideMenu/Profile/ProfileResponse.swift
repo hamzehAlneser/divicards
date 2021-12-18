@@ -12,8 +12,8 @@ struct ProfileResponse : Decodable {
     var message : String
 }
 struct UserData:Decodable {
-    var id : String
-    var role_id : String
+    var id : Int
+    var role_id : Int
     var first_name : String
     var last_name : String
     var gender : String

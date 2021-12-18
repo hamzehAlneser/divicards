@@ -14,7 +14,9 @@ struct HistoryResponse: Codable {
 
 // MARK: - WelcomeDatum
 struct HistoryData: Codable {
-    let ordersID, totalTax, customersID: String
+    let ordersID: Int
+    let totalTax: String
+    let customersID: Int
     let deliveryID: JSONNull?
     let customersName: String
     let customersCompany: JSONNull?
@@ -29,21 +31,27 @@ struct HistoryData: Codable {
     let billingName: String
     let billingCompany: JSONNull?
     let billingStreetAddress, billingSuburb, billingCity, billingPostcode: String
-    let billingState, billingCountry, billingAddressFormatID, paymentMethod: String
+    let billingState, billingCountry: String
+    let billingAddressFormatID: Int
+    let paymentMethod: String
     let ccType, ccOwner, ccNumber, ccExpires: JSONNull?
     let lastModified, datePurchased: String
     let ordersDateFinished: JSONNull?
     let currency, currencyValue, orderPrice, shippingCost: String
     let shippingMethod: String
     let shippingDuration: JSONNull?
-    let orderInformation, isSeen, couponAmount: String
+    let orderInformation: String
+    let isSeen: Int
+    let couponAmount: String
     let excludeProductIDS, productCategories, excludedProductCategories: [JSONAny]
-    let freeShipping: String
+    let freeShipping: Int
     let productIDS: [JSONAny]
-    let orderedSource, deliveryPhone, billingPhone: String
+    let orderedSource: Int
+    let deliveryPhone, billingPhone: String
     let transactionID, createdAt, updatedAt: JSONNull?
     let discountType, amount, usageLimit, coupons: [JSONAny]
-    let ordersStatusID, ordersStatus: String
+    let ordersStatusID: Int
+    let ordersStatus: String
     let customerComments: JSONNull?
     let adminComments: String
     let data: [DatumDatum]
@@ -124,10 +132,11 @@ struct HistoryData: Codable {
 
 // MARK: - DatumDatum
 struct DatumDatum: Codable {
-    let ordersProductsID, ordersID, productsID: String
+    let ordersProductsID, ordersID, productsID: Int
     let productsModel: JSONNull?
     let productsName, productsPrice, finalPrice, productsTax: String
-    let productsQuantity, image: String
+    let productsQuantity: Int
+    let image: String
     let categories: [Category]
     let attributes: [JSONAny]
 
@@ -147,8 +156,9 @@ struct DatumDatum: Codable {
 
 // MARK: - Category
 struct Category: Codable {
-    let categoriesID, categoriesName, categoriesImage, categoriesIcon: String
-    let parentID: String
+    let categoriesID: Int
+    let categoriesName, categoriesImage, categoriesIcon: String
+    let parentID: Int
 
     enum CodingKeys: String, CodingKey {
         case categoriesID = "categories_id"

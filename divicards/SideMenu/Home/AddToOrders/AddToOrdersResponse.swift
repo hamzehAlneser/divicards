@@ -8,6 +8,6 @@
 struct AddToOrdersResponse:Decodable {
     var success: String
     var data : [JSONAny]
-    var customer_id : String?
+    var customer_id : Int?
     var message: String
 }

@@ -33,37 +33,50 @@ class ProfileViewController: BaseViewController {
     }
     
     func fillTextFieldsPlaceHolder() {
+        
         nameTextField.text = UserDefaults.standard.string(forKey: "UserFirstName")
-        lastNameTextField.text = "Area"
+        lastNameTextField.placeholder = "Area"
         emailTextField.text = UserDefaults.standard.string(forKey: "UserEmail")
         phoneNumberTextField.text = UserDefaults.standard.string(forKey: "UserPhone")
         
     }
 
     @IBAction func saveButtonPressed(_ sender: Any) {
-        startLoadingWithUIBlocker()
         let firstName = nameTextField.text
+
+        if firstName == "" {
+            self.view.makeToast("Enter name")
+        }
+        else{
+        startLoadingWithUIBlocker()
+        
         let lastName = lastNameTextField.text
         let email = emailTextField.text
         let phone = phoneNumberTextField.text
+
         
         profileRepositry.UpdateInfoRequest(id: UserDefaults.standard.string(forKey: "UserId")!, fName: firstName ?? " ", lName: lastName ?? " ", phone: phone ?? " ", gender: UserDefaults.standard.string(forKey: "UserGender")!, dob: "5-8-1998", changePassword: "no") { response in
             self.stopLoadingWithUIBlocker()
+            if response != nil{
             if response?.success == "1"{
                 UserDefaults.standard.set(response?.data.first?.id, forKey: "UserId") //setObject
                 UserDefaults.standard.set(response?.data.first?.first_name, forKey: "UserFirstName") //setObject
                 UserDefaults.standard.set(response?.data.first?.last_name, forKey: "UserLastName") //setObject
                 UserDefaults.standard.set(response?.data.first?.phone, forKey: "UserPhone")
                 UserDefaults.standard.set(response?.data.first?.gender, forKey: "UserGender")
-                self.view.makeToast("Profile Updated Successfuly")
+                self.view.makeToast(response?.message)
             }
             else{
                 self.view.makeToast(response?.message)
                 
             }
+            }
+            else {
+                self.view.makeToast("Internal error")
+            }
             
         }
-        
+        }
         
         
         

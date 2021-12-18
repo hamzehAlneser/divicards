@@ -14,17 +14,18 @@ class ProductsViewController: BaseViewController, UICollectionViewDelegate, UICo
     var products = [ProductData]()
     var selectedProduct : ProductData?
     
-    var catId : String?
-    var selectedCatParentId : String?
+    var catId : Int?
+    var selectedCatParentId : Int?
     
     var selectedIndex : Int?
 
     override func viewWillAppear(_ animated: Bool) {
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-        imageView.contentMode = .scaleAspectFit
-            let image = UIImage(named: "main_logo")
-            imageView.image = image
-            navigationItem.titleView = imageView
+//        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+//        imageView.contentMode = .scaleAspectFit
+//            let image = UIImage(named: "main_logo")
+//            imageView.image = image
+//            navigationItem.titleView = imageView
+        addLogoToNavigationBarItem()
     }
     
     override func viewDidLoad() {
@@ -37,8 +38,8 @@ class ProductsViewController: BaseViewController, UICollectionViewDelegate, UICo
             let image = UIImage(named: "main_logo")
             imageView.image = image
         startLoadingWithUIBlocker()
-        productReporsitry.productsRequest(catId: catId ?? "0") { response in
-            if(self.catId == "0"){
+        productReporsitry.productsRequest(catId: catId ?? 0) { response in
+            if(self.catId == 0){
                 self.view.makeToast("Error")
                 return  }
             self.startAnimating()
@@ -56,12 +57,12 @@ class ProductsViewController: BaseViewController, UICollectionViewDelegate, UICo
                     }
                 }
                 else{self.stopAnimating()
-                    self.view.makeToast("Nil")
+                    self.view.makeToast("Error")
                 }
             }
             else{
                 self.stopAnimating()
-                self.view.makeToast("response Nil")
+                self.view.makeToast("Internal Error")
             }
         }
 
@@ -75,10 +76,12 @@ class ProductsViewController: BaseViewController, UICollectionViewDelegate, UICo
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductCell", for: indexPath) as? ProductCell else{fatalError("Failed")}
-        let url = "http://divicards2.sensitivetime.com/" + self.products[indexPath.row].products_image
+        let url = "https://divi-cards.com/" + self.products[indexPath.row].products_image
+//        cell.image.image = UIImage(named: "card")
         cell.image.load(url: url)
         cell.firstTextField.text = "\(products[indexPath.row].currency) \(products[indexPath.row].products_price)"
         cell.secondTextField.text = products[indexPath.row].products_name
+//        cell.secondTextField.text = "Dvicards Products"
         cell.layer.masksToBounds = true
         cell.layer.cornerRadius = 15
         return cell

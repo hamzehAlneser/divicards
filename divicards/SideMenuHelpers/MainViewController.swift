@@ -10,8 +10,8 @@ protocol MainMenuDelegate  {
     func DidNavigateToCategories(parentId : String)
 }
 class MainViewController: UIViewController, SideMenuViewControllerDelegate, HomeControllerDelegate {
-    var parentID : String = ""
-    func didSelectCategory(subCategories: [CategoryData], paretId: String) {
+    var parentID : Int = 0
+    func didSelectCategory(subCategories: [CategoryData], paretId: Int) {
         self.parentID = paretId
         showSubViewController(parentId : paretId,data: subCategories)
     }
@@ -56,11 +56,12 @@ class MainViewController: UIViewController, SideMenuViewControllerDelegate, Home
         
         
         
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-        imageView.contentMode = .scaleAspectFit
-            let image = UIImage(named: "main_logo")
-            imageView.image = image
-            navigationItem.titleView = imageView
+//        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+//        imageView.contentMode = .scaleAspectFit
+//            let image = UIImage(named: "main_logo")
+//            imageView.image = image
+//            navigationItem.titleView = imageView
+        addLogoToNavigationBarItem()
         
         sideMenuBtn.target = revealViewController()
         sideMenuBtn.action = #selector(revealViewController()?.revealSideMenu)
@@ -71,10 +72,10 @@ class MainViewController: UIViewController, SideMenuViewControllerDelegate, Home
         self.sideMenuShadowView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.sideMenuShadowView.backgroundColor = .black
         self.sideMenuShadowView.alpha = 0.0
-//        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(TapGestureRecognizer))
-//        tapGestureRecognizer.numberOfTapsRequired = 1
-//        tapGestureRecognizer.delegate = self
-//        view.addGestureRecognizer(tapGestureRecognizer)
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ShadhowTapped))
+        tapGestureRecognizer.numberOfTapsRequired = 1
+        tapGestureRecognizer.delegate = self
+        self.sideMenuShadowView.addGestureRecognizer(tapGestureRecognizer)
         if self.revealSideMenuOnTop {
             view.insertSubview(self.sideMenuShadowView, at: 1)
         }
@@ -237,7 +238,7 @@ extension MainViewController {
     }
 
     
-    func showSubViewController(parentId : String, data : [CategoryData]) -> () {
+    func showSubViewController(parentId : Int, data : [CategoryData]) -> () {
         // Remove the previous View
         for subview in view.subviews {
             if subview.tag == 99 {
@@ -246,7 +247,8 @@ extension MainViewController {
         }
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "SubCatNav") as! SubCategoriesViewController
-
+        self.sideMenuBtn.image = UIImage(systemName: "arrow.backward")
+        self.sideMenuBtn.action = #selector(buttonAction)
             vc.fillCollectionView(selectedSubCategories: data)
             vc.selectedCatParentId = parentId
         
@@ -268,11 +270,28 @@ extension MainViewController {
 
 
     }
+    @objc func buttonAction() {
+        sideMenuBtn.action = #selector(revealViewController()?.revealSideMenu)
+
+        self.animateSideMenu(targetPosition: self.revealSideMenuOnTop ? (-self.sideMenuRevealWidth - self.paddingForRotation) : 0) { _ in
+            self.isExpanded = false
+        }
+        self.sideMenuBtn.image = UIImage(systemName: "line.horizontal.3")
+
+        // Animate Shadow (Fade Out)
+        UIView.animate(withDuration: 0.5) { self.sideMenuShadowView.alpha = 0.0 }
+        self.showViewController(viewController: UIViewController.self, storyboardId: "HomeNav")
+    }
 
     func sideMenuState(expanded: Bool) {
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(TapGestureRecognizer))
+        tapGestureRecognizer.numberOfTapsRequired = 1
+        tapGestureRecognizer.delegate = self
         if expanded {
             self.sideMenuBtn.image = UIImage(systemName: "arrow.backward")
 
+//            view.addGestureRecognizer(tapGestureRecognizer)
+//            tapGestureRecognizer.isEnabled = true
             self.animateSideMenu(targetPosition: self.revealSideMenuOnTop ? 0 : self.sideMenuRevealWidth) { _ in
                 self.isExpanded = true
                 
@@ -288,6 +307,8 @@ extension MainViewController {
 
             // Animate Shadow (Fade Out)
             UIView.animate(withDuration: 0.5) { self.sideMenuShadowView.alpha = 0.0 }
+            view.removeGestureRecognizer(tapGestureRecognizer)
+            tapGestureRecognizer.isEnabled = false
         }
     }
 
@@ -332,6 +353,10 @@ extension MainViewController: UIGestureRecognizerDelegate {
                 self.sideMenuState(expanded: false)
             }
         }
+    }
+    
+    @objc func ShadhowTapped() {
+        sideMenuState(expanded: false)
     }
 
     // Close side menu when you tap on the shadow background view

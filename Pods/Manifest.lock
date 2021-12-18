@@ -1,0 +1,156 @@
+PODS:
+  - Alamofire (5.4.1)
+  - AlamofireImage (4.1.0):
+    - Alamofire (~> 5.1)
+  - Firebase/Auth (7.6.0):
+    - Firebase/CoreOnly
+    - FirebaseAuth (~> 7.6.0)
+  - Firebase/CoreOnly (7.6.0):
+    - FirebaseCore (= 7.6.0)
+  - Firebase/Messaging (7.6.0):
+    - Firebase/CoreOnly
+    - FirebaseMessaging (~> 7.6.0)
+  - FirebaseAuth (7.6.0):
+    - FirebaseCore (~> 7.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.0)
+    - GoogleUtilities/Environment (~> 7.0)
+    - GTMSessionFetcher/Core (~> 1.4)
+  - FirebaseCore (7.6.0):
+    - FirebaseCoreDiagnostics (~> 7.4)
+    - GoogleUtilities/Environment (~> 7.0)
+    - GoogleUtilities/Logger (~> 7.0)
+  - FirebaseCoreDiagnostics (7.6.0):
+    - GoogleDataTransport (~> 8.0)
+    - GoogleUtilities/Environment (~> 7.0)
+    - GoogleUtilities/Logger (~> 7.0)
+    - nanopb (~> 2.30907.0)
+  - FirebaseInstallations (7.6.0):
+    - FirebaseCore (~> 7.0)
+    - GoogleUtilities/Environment (~> 7.0)
+    - GoogleUtilities/UserDefaults (~> 7.0)
+    - PromisesObjC (~> 1.2)
+  - FirebaseInstanceID (7.11.0):
+    - FirebaseCore (~> 7.0)
+    - FirebaseInstallations (~> 7.0)
+    - GoogleUtilities/Environment (~> 7.0)
+    - GoogleUtilities/UserDefaults (~> 7.0)
+  - FirebaseMessaging (7.6.0):
+    - FirebaseCore (~> 7.0)
+    - FirebaseInstanceID (~> 7.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.0)
+    - GoogleUtilities/Environment (~> 7.0)
+    - GoogleUtilities/Reachability (~> 7.0)
+    - GoogleUtilities/UserDefaults (~> 7.0)
+  - GoogleDataTransport (8.2.0):
+    - nanopb (~> 2.30907.0)
+  - GoogleUtilities/AppDelegateSwizzler (7.2.2):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
+  - GoogleUtilities/Environment (7.2.2):
+    - PromisesObjC (~> 1.2)
+  - GoogleUtilities/Logger (7.2.2):
+    - GoogleUtilities/Environment
+  - GoogleUtilities/Network (7.2.2):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Reachability
+  - "GoogleUtilities/NSData+zlib (7.2.2)"
+  - GoogleUtilities/Reachability (7.2.2):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/UserDefaults (7.2.2):
+    - GoogleUtilities/Logger
+  - GTMSessionFetcher/Core (1.5.0)
+  - IQKeyboardManager (6.5.6)
+  - nanopb (2.30907.0):
+    - nanopb/decode (= 2.30907.0)
+    - nanopb/encode (= 2.30907.0)
+  - nanopb/decode (2.30907.0)
+  - nanopb/encode (2.30907.0)
+  - NVActivityIndicatorView/Base (5.1.1)
+  - NVActivityIndicatorView/Extended (5.1.1):
+    - NVActivityIndicatorView/Base
+  - PromisesObjC (1.2.12)
+  - ReachabilitySwift (5.0.0)
+  - SwiftSoup (2.3.2)
+  - Toast-Swift (5.0.1)
+  - URLImage (2.2.5):
+    - URLImage/Common (= 2.2.5)
+    - URLImage/DownloadManager (= 2.2.5)
+    - URLImage/FileIndex (= 2.2.5)
+    - URLImage/ImageDecoder (= 2.2.5)
+    - URLImage/Log (= 2.2.5)
+    - URLImage/PlainDatabase (= 2.2.5)
+    - URLImage/RemoteContentView (= 2.2.5)
+  - URLImage/Common (2.2.5)
+  - URLImage/DownloadManager (2.2.5):
+    - URLImage/Log
+  - URLImage/FileIndex (2.2.5):
+    - URLImage/Common
+    - URLImage/Log
+    - URLImage/PlainDatabase
+  - URLImage/ImageDecoder (2.2.5)
+  - URLImage/Log (2.2.5)
+  - URLImage/PlainDatabase (2.2.5)
+  - URLImage/RemoteContentView (2.2.5)
+
+DEPENDENCIES:
+  - Alamofire (~> 5.2)
+  - AlamofireImage (~> 4.1)
+  - Firebase/Auth
+  - Firebase/Messaging
+  - IQKeyboardManager
+  - NVActivityIndicatorView/Extended
+  - ReachabilitySwift
+  - SwiftSoup
+  - Toast-Swift (~> 5.0.1)
+  - URLImage
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - AlamofireImage
+    - Firebase
+    - FirebaseAuth
+    - FirebaseCore
+    - FirebaseCoreDiagnostics
+    - FirebaseInstallations
+    - FirebaseInstanceID
+    - FirebaseMessaging
+    - GoogleDataTransport
+    - GoogleUtilities
+    - GTMSessionFetcher
+    - IQKeyboardManager
+    - nanopb
+    - NVActivityIndicatorView
+    - PromisesObjC
+    - ReachabilitySwift
+    - SwiftSoup
+    - Toast-Swift
+    - URLImage
+
+SPEC CHECKSUMS:
+  Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
+  AlamofireImage: c4a2ba349885fb3064feb74d2e547bd42ce9be10
+  Firebase: e1e089d9aac215a52442583f818ab61de3c4581b
+  FirebaseAuth: 0a1df88dc32569db509e6269c3e4bf2a168e8ae8
+  FirebaseCore: 0a43b7f1c5b36f3358cd703011ca4c7e0df55870
+  FirebaseCoreDiagnostics: ee1184d51da3293335b83355aad20f537acc24cf
+  FirebaseInstallations: 6e4e77396559bc2ae0504823837ed737b1c7e47f
+  FirebaseInstanceID: ad5135045a498d7775903efd39762d2cdfa1be27
+  FirebaseMessaging: 4b9b2850fcfcaac2820097ee3703ba6cfff3df84
+  GoogleDataTransport: 1024b1a4dfbd7a0e92cb20d7e0a6f1fb66b449a4
+  GoogleUtilities: 31c5b01f978a70c6cff2afc6272b3f1921614b43
+  GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
+  IQKeyboardManager: 2a6e97afdafc7becf0cb17a9a8d795e3a980717f
+  nanopb: 59221d7f958fb711001e6a449489542d92ae113e
+  NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
+  PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
+  ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
+  SwiftSoup: f97bc4e988c7729d6457f9642f974c617a6e2510
+  Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
+  URLImage: 36a66c03ba2a9ccbbf06bc83431f2cef171008e8
+
+PODFILE CHECKSUM: bd8147d1a98a145b83ebd2b2302799533c44a3fe
+
+COCOAPODS: 1.10.1

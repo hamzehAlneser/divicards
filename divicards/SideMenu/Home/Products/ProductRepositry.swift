@@ -9,11 +9,11 @@ import UIKit
 import Alamofire
 struct ProductRepositry {
     let serviceConstants = ServiceConstants()
-    func productsRequest(catId : String,completion: @escaping(_ response : ProductResponse?) -> ()) {
+    func productsRequest(catId : Int,completion: @escaping(_ response : ProductResponse?) -> ()) {
         let parameters = ["categories_id" : catId,
                           "language_id" : "1",
                           "type" : "a to z",
-                          "currency_code" : "JOD"]
+                          "currency_code" : "JOD"] as [String : Any]
         
 
         AF.request(serviceConstants.ProductsUrl, method: .post, parameters: parameters, encoding: URLEncoding.default, headers: serviceConstants.getHeaders(), interceptor: nil, requestModifier: nil).response { (data) in

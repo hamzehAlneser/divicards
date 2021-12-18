@@ -1,6 +1,6 @@
 import UIKit
 protocol HomeControllerDelegate {
-    func didSelectCategory(subCategories : [CategoryData], paretId : String)
+    func didSelectCategory(subCategories : [CategoryData], paretId : Int)
 }
 class HomeViewController: BaseViewController,UITableViewDelegate,UITableViewDataSource{
     
@@ -21,7 +21,7 @@ class HomeViewController: BaseViewController,UITableViewDelegate,UITableViewData
     var delegate : HomeControllerDelegate?
     var contentViewHeight: Double = 0.0
     let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-    var selectedCatID : String = ""
+    var selectedCatID : Int = 0
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "HomeToProducts" {
             let destinationNavigationController = segue.destination as! UINavigationController
@@ -48,11 +48,14 @@ class HomeViewController: BaseViewController,UITableViewDelegate,UITableViewData
         startLoadingWithUIBlocker()
         
         homeRepositry.homeCategoriesRequest(completion: { response in
+            if(response == nil){
+                return
+            }
                 
             if response?.success == "1"{
                 self.allCategories = response!.data
                 for cat in response!.data {
-                    if cat.parent_id == "0" {
+                    if cat.parent_id == 0 {
                         self.categories.append(cat)
                     }
                 }
@@ -86,12 +89,14 @@ class HomeViewController: BaseViewController,UITableViewDelegate,UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath) as? CategoryCell else{fatalError("Failed")}
         if tableView == leftTableView {
-            let url = "http://divicards2.sensitivetime.com/" + self.leftCategories[indexPath.row].image
+            let url = "https://divi-cards.com/" + self.leftCategories[indexPath.row].image
             cell.catImage.load(url: url)
+//            cell.catImage.image = UIImage(named: "card")
             cell.cellContentView.backgroundColor = getCategoryBackColor(catName: leftCategories[indexPath.row].categories_name)
         }
         else{
-            let url = "http://divicards2.sensitivetime.com/" + self.rightCategories[indexPath.row].image
+            let url = "https://divi-cards.com/" + self.rightCategories[indexPath.row].image
+//            cell.catImage.image = UIImage(named: "card")
             cell.catImage.load(url: url)
             cell.cellContentView.backgroundColor = getCategoryBackColor(catName: rightCategories[indexPath.row].categories_name)
         }
@@ -175,8 +180,16 @@ class HomeViewController: BaseViewController,UITableViewDelegate,UITableViewData
     
     func getCategoryBackColor(catName : String) -> UIColor {
         switch catName {
+        case "League of Legends (NA)":
+            return UIColor(named: "pubgBackColor") ?? UIColor.white
+        case "CrossFire":
+            return UIColor(named: "fifaBackColor") ?? UIColor.white
+        case "Twitch":
+            return UIColor(named: "itunesBackColor") ?? UIColor.white
         case "Amazon":
             return UIColor(named: "amazonBackColor") ?? UIColor.white
+        case "SPOTIFY":
+            return UIColor(named: "freefireBackColor") ?? UIColor.white
         case "Ebay":
             return UIColor(named: "ebayBackColor") ?? UIColor.white
         case "Fifa":

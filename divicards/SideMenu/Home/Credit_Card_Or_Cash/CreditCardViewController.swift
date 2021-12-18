@@ -13,18 +13,19 @@ class CreditCardViewController: UIViewController {
     var product : ProductData?
     
     override func viewWillAppear(_ animated: Bool) {
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-        imageView.contentMode = .scaleAspectFit
-            let image = UIImage(named: "main_logo")
-            imageView.image = image
-            navigationItem.titleView = imageView
+//        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+//        imageView.contentMode = .scaleAspectFit
+//            let image = UIImage(named: "main_logo")
+//            imageView.image = image
+//            navigationItem.titleView = imageView
+        addLogoToNavigationBarItem()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        creditCardView.layer.cornerRadius = 15
-        creditCardView.layer.borderWidth = 0.3
-        creditCardView.layer.borderColor = UIColor.gray.cgColor
+//        creditCardView.layer.cornerRadius = 15
+//        creditCardView.layer.borderWidth = 0.3
+//        creditCardView.layer.borderColor = UIColor.gray.cgColor
         deliveryOnCachButton.layer.cornerRadius = 15
         deliveryOnCachButton.layer.borderWidth = 0.3
         deliveryOnCachButton.layer.borderColor = UIColor.gray.cgColor

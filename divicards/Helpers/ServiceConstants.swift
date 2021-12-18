@@ -8,13 +8,13 @@
 import UIKit
 import Alamofire
 struct ServiceConstants {
-    let loginUrl = "http://divicards2.sensitivetime.com//api/processlogin"
-    let RegisterUrl = "http://divicards2.sensitivetime.com//api/processregistration"
-    let categoriesUrl = "http://divicards2.sensitivetime.com//api/allcategories"
-    let ProductsUrl = "http://divicards2.sensitivetime.com//api/getallproducts"
-    let UpdateUserInfoUrl = "http://divicards2.sensitivetime.com//api/updatecustomerinfo"
-    let AddToOrdersUrl = "http://divicards2.sensitivetime.com//api/addtoorder"
-    let HistoryUrl = "http://divicards2.sensitivetime.com//api/getorders"
+    let loginUrl = "https://divi-cards.com/api/processlogin"
+    let RegisterUrl = "https://divi-cards.com/api/processregistration"
+    let categoriesUrl = "https://divi-cards.com/api/allcategories"
+    let ProductsUrl = "https://divi-cards.com/api/getallproducts"
+    let UpdateUserInfoUrl = "https://divi-cards.com/api/updatecustomerinfo"
+    let AddToOrdersUrl = "https://divi-cards.com/api/addtoorder"
+    let HistoryUrl = "https://divi-cards.com/api/getorders"
 
     func getHeaders() -> HTTPHeaders{
     let headers : HTTPHeaders = [
@@ -23,8 +23,6 @@ struct ServiceConstants {
         "consumer-ip" : getIPAddress()!,
         "consumer-nonce" : generateUniqueNonce(),
         "consumer-device-id" : UIDevice.current.identifierForVendor!.uuidString
-
-
     ]
     
     return headers

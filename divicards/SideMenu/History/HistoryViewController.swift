@@ -43,7 +43,7 @@ class HistoryViewController: BaseViewController, UITableViewDataSource, UITableV
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryTableViewCell", for: indexPath) as? HistoryTableViewCell else{fatalError("Failed")}
         cell.DateLabel.text = self.HistoryData[indexPath.row].datePurchased
         cell.priceLabel.text = self.HistoryData[indexPath.row].orderPrice
-        cell.orderIDLabel.text = self.HistoryData[indexPath.row].ordersID
+        cell.orderIDLabel.text = String(self.HistoryData[indexPath.row].ordersID)
         cell.selectionStyle = .none
             return cell
     }

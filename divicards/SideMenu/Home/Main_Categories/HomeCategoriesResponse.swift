@@ -13,10 +13,10 @@ struct HomeCategoriesResponse : Decodable {
     var categories : Int?
 }
 struct CategoryData:Decodable {
-    var categories_id : String
+    var categories_id : Int
     var categories_name : String
-    var parent_id : String
+    var parent_id : Int
     var image : String
     var icon : String
-    var total_products : String
+    var total_products : Int
 }

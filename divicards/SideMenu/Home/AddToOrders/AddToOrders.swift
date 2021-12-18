@@ -6,6 +6,7 @@
 //
 
 import UIKit
+
 class AddToOrders: BaseViewController {
     @IBOutlet weak var productView: UIView!
     @IBOutlet weak var dileveryView: UIView!
@@ -19,13 +20,15 @@ class AddToOrders: BaseViewController {
     @IBOutlet weak var productLabel: UILabel!
     @IBOutlet weak var contactTextField: UITextField!
     @IBOutlet weak var areaTextField: UITextField!
+
     
     override func viewWillAppear(_ animated: Bool) {
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-        imageView.contentMode = .scaleAspectFit
-            let image = UIImage(named: "main_logo")
-            imageView.image = image
-            navigationItem.titleView = imageView
+//        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+//        imageView.contentMode = .scaleAspectFit
+//            let image = UIImage(named: "main_logo")
+//            imageView.image = image
+//            navigationItem.titleView = imageView
+        addLogoToNavigationBarItem()
     }
     
     var product : ProductData?
@@ -42,12 +45,13 @@ class AddToOrders: BaseViewController {
     func fillInfo(product : ProductData) {
         
         productLabel.text = product.products_name
-        productPriceLabel.text = product.products_price
+//        productLabel.text = "Divicards Products"
+        productPriceLabel.text = "\(product.currency) \(product.products_price)"
         contactTextField.text = UserDefaults.standard.string(forKey: "UserPhone")
         if UserDefaults.standard.string(forKey: "UserFirstName") != nil {
             nameLabel.text = UserDefaults.standard.string(forKey: "UserFirstName")! + UserDefaults.standard.string(forKey: "UserLastName")!
         }
-        totalLabel.text = String(Double(product.products_price) ?? 100+2)
+        totalLabel.text = "\(product.currency) \(String((Double(product.products_price) ?? 100) + 2))"
         
     }
     
@@ -91,11 +95,38 @@ class AddToOrders: BaseViewController {
 
         else {
             startLoadingWithUIBlocker()
-            var productID = Int(self.product?.products_id ?? "0")
+            var productID = self.product?.products_id ?? 0
             var addToOrdersRepository = AddToOrdersRepository()
-            addToOrdersRepository.AddToOrdersRequest(products_id: productID ?? 0, products_name: self.product?.products_name ?? "Unknown", price: self.product?.products_price ?? "Unknown", name: UserDefaults.standard.string(forKey: "UserFirstName") ?? "Unknown", phone: UserDefaults.standard.string(forKey: "UserPhone") ?? "Unknown") { response in
-                self.stopAnimating()
-                self.view.makeToast(response?.message)
+            addToOrdersRepository.AddToOrdersRequest(products_id: productID ?? 0, products_name: self.product?.products_name ?? "Unknown", price: self.product?.products_price ?? "Unknown", name: nameLabel.text ??  UserDefaults.standard.string(forKey: "UserFirstName") ?? "Unknown", phone: contactTextField.text ?? UserDefaults.standard.string(forKey: "UserPhone") ?? "Unknown") { response in
+                if response != nil{
+                    if response?.success == "1" {
+                        self.stopAnimating()
+                        let alert = UIAlertController(title: "Added", message: response?.message, preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                            switch action.style{
+                                case .default:
+                                    self.dismiss(animated: true, completion: nil)
+                                
+                                case .cancel:
+                                print("cancel")
+                                
+                                case .destructive:
+                                print("destructive")
+                                
+                            }
+                        }))
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                    else {
+                        self.stopAnimating()
+                        self.view.makeToast(response?.message)
+                    }
+
+                }
+                else{
+                    self.view.makeToast("Internal Error")
+                }
+
             }
             }
         }

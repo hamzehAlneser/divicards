@@ -212,8 +212,8 @@
 				5A4E7C5326A9D87B00972838 /* Details */,
 				5A9DFD042648856B008761FB /* HistoryViewController.swift */,
 				5A4E7C4726A65B4D00972838 /* HistoryRepository.swift */,
-				5A4E7C4926A65B5800972838 /* HistoryResponse.swift */,
 				5A4E7C4B26A8518000972838 /* HistoryTableViewCell.swift */,
+				5A4E7C4926A65B5800972838 /* HistoryResponse.swift */,
 				5A4E7C4C26A8518000972838 /* HistoryTableViewCell.xib */,
 			);
 			path = History;
@@ -937,6 +937,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = divicards/divicards.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.8;
 				DEVELOPMENT_TEAM = 93F2B42F6H;
 				INFOPLIST_FILE = divicards/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -944,6 +945,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.albertapayment.divicards;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -959,6 +961,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = divicards/divicards.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.8;
 				DEVELOPMENT_TEAM = 93F2B42F6H;
 				INFOPLIST_FILE = divicards/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -966,6 +969,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.albertapayment.divicards;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

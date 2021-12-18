@@ -12,8 +12,8 @@ struct LoginResponse : Decodable {
     var message : String
 }
 struct data:Decodable {
-    var id : String
-    var role_id : String
+    var id : Int
+    var role_id : Int
     var first_name : String
     var last_name : String
     var gender : String
