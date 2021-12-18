@@ -25,15 +25,16 @@ class LoginViewController: BaseViewController {
     let loginRepositry = LoginRepositry()
     
     override func viewWillAppear(_ animated: Bool) {
+        NetworkManager.isUnReachableViaWiFi() { _ in
+            self.navigationController?.setNavigationBarHidden(true, animated: true)
+            self.performSegue(withIdentifier: "HomeToNoWifi", sender: self)
+        }
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
 
     }
     override func viewDidAppear(_ animated: Bool) {
-        NetworkManager.isUnReachableViaWiFi() { _ in
-            self.navigationController?.setNavigationBarHidden(true, animated: true)
-            self.performSegue(withIdentifier: "HomeToNoWifi", sender: self)
-        }
+
         let designHelper = DesignHelper()
         manageButtonsDesign(helper: designHelper)
         managetextFeildDesign(helper: designHelper)
@@ -51,7 +52,10 @@ class LoginViewController: BaseViewController {
         
         
         super.viewDidLoad()
-        
+        NetworkManager.isUnReachableViaWiFi() { _ in
+            self.navigationController?.setNavigationBarHidden(true, animated: true)
+            self.performSegue(withIdentifier: "HomeToNoWifi", sender: self)
+        }
         if UserDefaults.standard.string(forKey: "UserPassword") != nil && UserDefaults.standard.string(forKey: "UserEmail") != nil {
 
             loginUser(email: UserDefaults.standard.string(forKey: "UserEmail")!, password: UserDefaults.standard.string(forKey: "UserPassword")!)

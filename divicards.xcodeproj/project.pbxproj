@@ -18,7 +18,6 @@
 		5A4E7C4D26A8518000972838 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4E7C4B26A8518000972838 /* HistoryTableViewCell.swift */; };
 		5A4E7C4E26A8518000972838 /* HistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A4E7C4C26A8518000972838 /* HistoryTableViewCell.xib */; };
 		5A4E7C5026A8600900972838 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4E7C4F26A8600900972838 /* NetworkManager.swift */; };
-		5A4E7C5226A8637A00972838 /* NoConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4E7C5126A8637A00972838 /* NoConnectionViewController.swift */; };
 		5A4E7C5526A9D88E00972838 /* HistoryDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4E7C5426A9D88E00972838 /* HistoryDetailsViewController.swift */; };
 		5A4E7C5726AA3BF800972838 /* OTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4E7C5626AA3BF800972838 /* OTPViewController.swift */; };
 		5A61C222268A523A006E7366 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A61C220268A523A006E7366 /* CategoryCell.swift */; };
@@ -110,7 +109,6 @@
 		5A4E7C4B26A8518000972838 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		5A4E7C4C26A8518000972838 /* HistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryTableViewCell.xib; sourceTree = "<group>"; };
 		5A4E7C4F26A8600900972838 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		5A4E7C5126A8637A00972838 /* NoConnectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NoConnectionViewController.swift; path = ../../../../../Development/NoConnectionViewController.swift; sourceTree = "<group>"; };
 		5A4E7C5426A9D88E00972838 /* HistoryDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDetailsViewController.swift; sourceTree = "<group>"; };
 		5A4E7C5626AA3BF800972838 /* OTPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPViewController.swift; sourceTree = "<group>"; };
 		5A61C220268A523A006E7366 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
@@ -291,7 +289,6 @@
 				5AC22823262F5FB500B0E6B6 /* LoginViewController.swift */,
 				5A9DFCF426488341008761FB /* LoginRepositry.swift */,
 				5A34F29326489971003EE280 /* LoginResponse.swift */,
-				5A4E7C5126A8637A00972838 /* NoConnectionViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -749,7 +746,6 @@
 				5AF78BC3264886B000A55AD3 /* SideMenuViewController.swift in Sources */,
 				5A9DFD0C2648856B008761FB /* HistoryViewController.swift in Sources */,
 				5A7BD813263F521F00F3D311 /* IsoCountryInfo.swift in Sources */,
-				5A4E7C5226A8637A00972838 /* NoConnectionViewController.swift in Sources */,
 				5A96D2A5264B649A00623470 /* HomeCategoriesResponse.swift in Sources */,
 				5A0FD3B0263CEAE900525677 /* SideMenuLoginViewController.swift in Sources */,
 				5A7BD7F7263F466400F3D311 /* CountryPickerController.swift in Sources */,

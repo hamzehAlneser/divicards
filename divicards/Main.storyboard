@@ -2055,7 +2055,7 @@
                             <constraint firstItem="8ei-t2-Fx2" firstAttribute="top" secondItem="leO-ae-VH2" secondAttribute="bottom" constant="10" id="lkS-0m-EmM"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="OaN-Sx-1VE" customClass="NoConnectionViewController"/>
+                    <navigationItem key="navigationItem" id="OaN-Sx-1VE"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9qe-Df-C4o" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
